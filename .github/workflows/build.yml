@@ -1,0 +1,23 @@
+name: build
+on: [push]
+
+jobs:
+  build:
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: download repo
+        uses: actions/checkout@v4
+
+      - name: run build
+        run: |
+          sudo ./build.sh
+
+      - name: create release
+        uses: soap-phia/gh-large-releases@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          draft: true
+          files: out/*.zip
