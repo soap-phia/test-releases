@@ -19,7 +19,7 @@ jobs:
           sudo ./build.sh
 
       - name: create release
-        uses: soap-phia/gh-large-releases@a
+        uses: soap-phia/gh-large-releases@1
         with:
           draft: true
           files: out/*.zip
